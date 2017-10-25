@@ -7,24 +7,30 @@ class Task extends React.Component{
     super(props);
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleXClick = this.handleXClick.bind(this);
     };
 	
 	handleClick(e) {
-		this.props.onClick(e)
+		this.props.onClick(e.target.textContent)
 	}
-	
+	handleXClick(e) {
+		this.props.xClick(e.target.parentNode.previousSibling.textContent)
+	}
 	render() {
 		const done = this.props.isDone;
 	return(
-		<li className= "task-item" 
+		<li className= "task-item">
+			<span 
 			id={this.props.taskID}
 			style={done ? {"textDecoration":"line-through"} : null}
-			onClick={this.handleClick}>
+			onMouseDown={this.handleClick}>
 			{this.props.content}
-			
-			<a className= {done && "task-item-done"}
-				style={{'text-decoration': 'line-through'}}>
-				<span className='task-delete'>X</span>
+			</span>
+			<a 
+				className= {done && "task-item-done"}
+				onClick={this.handleXClick}
+				style={{'textDecoration': 'line-through'}}>
+				<span  className='task-delete'>X</span>
 			</a>
 		</li>
 		)}
@@ -42,23 +48,29 @@ export default class TaskList extends React.Component {
 	}
 	
 	completeTask(e) {
-		console.log(`we getting it started ${typeof(Object.keys(e))} keys: ${Object.keys(e)}`)
-		const eventContent = e
 		//change a task to the opposite value
 		const newData = this.state.tasks;
-		console.log(newData[0])
 		let task = newData.filter( t => {
-			console.log(`task content is ${t} vs ${e}`)
-			return task === e
+			return t.content === e
 		})[0];
-		console.log(task)
 		const index = newData.indexOf(task);
 		if(index !== -1){
 			task.completed = !task.completed;
 			newData[index] = task;
 			this.setState({ tasks: newData });
 		}
-		console.log(`we made it to the bottom ${index}`)
+	}
+	updateTasks(e) {
+		//update the data list
+		const newData = this.state.tasks;
+		let task = newData.filter( t => {
+			return t.content === e
+		})[0];
+		const index = newData.indexOf(task)
+		if(index !== -1){
+			newData.splice(index, 1);
+			this.setState({	tasks: newData })
+		}
 	}
 	render() {
 		const tasks = this.state.tasks;
@@ -70,7 +82,8 @@ export default class TaskList extends React.Component {
 						taskID={task.id}
 						content={task.content}
 						isDone={task.completed}
-						onClick={this.completeTask.bind(this)}	
+						onClick={this.completeTask.bind(this)}
+						xClick={this.updateTasks.bind(this)}	
 					/>
 					)
 			})

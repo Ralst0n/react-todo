@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import TaskBar from './TaskBar';
 import TaskList from './TaskList';
 
 export default class App extends Component {
@@ -7,7 +7,8 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <TaskList/>
+        <TaskBar className='task-bar' />
+        <TaskList />
       </div>
     );
   }

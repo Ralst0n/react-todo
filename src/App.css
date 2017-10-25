@@ -42,6 +42,18 @@ li.task-items {
 }
 
 .task-list {
-  width: 30%;
+  width: 45%;
   text-decoration-style: none;
+}
+
+.task-bar{
+  width: 45%;
+}
+
+.task-bar>input{
+  width: 80%;
+}
+
+.task-bar>button{
+  width: 18%;
 }
