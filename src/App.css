@@ -1,28 +1,6 @@
-
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+*{
+  background-color: #99F;
+  text-align: center;
 }
 
 .task-delete {
@@ -34,26 +12,48 @@
 .task-item {
   border: 1px solid black;
   list-style-type: none;
+  margin-top: 20px;
+  margin-left:10px;
+  border-radius: 10%;
+  height: 25px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 li.task-items {
   text-decoration: line-through; 
   color: red;
+
 }
 
 .task-list {
   width: 45%;
   text-decoration-style: none;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .task-bar{
-  width: 45%;
+  width: 43%;
+  margin: 20px auto;
 }
 
 .task-bar>input{
-  width: 80%;
+  width: 100%;
+  min-height: 40px;
+  font-size: 30px;
 }
 
-.task-bar>button{
-  width: 18%;
+.task-bar2{
+  margin: 10px 0;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-bar2>button{
+  float: left;
+  width: 50%;
+  background-color: #ea3;
+
 }

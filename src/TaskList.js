@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Data from './Data.js';
 
 class Task extends React.Component{
 	  constructor(props){
@@ -37,19 +36,15 @@ class Task extends React.Component{
 }
 
 export default class TaskList extends React.Component {
-	
 	constructor(props){
 	   super(props);
-	   this.state = {
-	     tasks: Data
-	   }
 
    	 this.completeTask = this.completeTask.bind(this);	
 	}
 	
 	completeTask(e) {
 		//change a task to the opposite value
-		const newData = this.state.tasks;
+		const newData = this.props.tasks;
 		let task = newData.filter( t => {
 			return t.content === e
 		})[0];
@@ -62,7 +57,7 @@ export default class TaskList extends React.Component {
 	}
 	updateTasks(e) {
 		//update the data list
-		const newData = this.state.tasks;
+		const newData = this.props.tasks;
 		let task = newData.filter( t => {
 			return t.content === e
 		})[0];
@@ -73,7 +68,7 @@ export default class TaskList extends React.Component {
 		}
 	}
 	render() {
-		const tasks = this.state.tasks;
+		const tasks = this.props.tasks;
 		let taskList = 
 			tasks.map( (task) => {
 				return(
